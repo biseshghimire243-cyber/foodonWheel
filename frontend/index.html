@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FoodShala | Delicious Food Delivered</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="/" class="logo">
+                🍔 Food<span>Shala</span>
+            </a>
+
+            <nav class="nav-links">
+
+                <a href="/" class="active">Home</a>
+
+                <a href="/menu">Menu</a>
+
+                <a href="/orders">Orders</a>
+
+                <a href="/profile">Profile</a>
+
+            </nav>
+
+            <div class="nav-actions">
+
+                <a href="/cart" class="cart-btn">
+                    🛒
+                    <span id="cartCount">0</span>
+                </a>
+
+                <a href="/login" id="loginBtn" class="login-btn">
+                    Login
+                </a>
+
+                <button
+                    id="logoutBtn"
+                    class="logout-btn"
+                    style="display:none;"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="hero-badge">
+                🍕 Fresh • Fast • Delicious
+            </span>
+
+            <h1>
+                Delicious Food,
+                <span>Delivered Fast.</span>
+            </h1>
+
+            <p>
+                Order your favorite meals from FoodShala
+                and enjoy delicious food delivered straight
+                to your doorstep.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="/menu" class="primary-btn">
+                    Explore Menu →
+                </a>
+
+                <a href="#categories" class="secondary-btn">
+                    Browse Categories
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="hero-image">
+
+            <div class="hero-food">
+                🍔
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CATEGORIES
+    ========================== -->
+
+    <section class="section" id="categories">
+
+        <div class="section-header">
+
+            <div>
+                <span class="section-label">
+                    EXPLORE
+                </span>
+
+                <h2>
+                    Popular Categories
+                </h2>
+            </div>
+
+            <a href="/menu" class="view-all">
+                View All →
+            </a>
+
+        </div>
+
+        <div
+            class="category-grid"
+            id="categoryContainer"
+        >
+
+            <div class="loading">
+                Loading categories...
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         POPULAR FOODS
+    ========================== -->
+
+    <section class="section foods-section">
+
+        <div class="section-header">
+
+            <div>
+
+                <span class="section-label">
+                    OUR MENU
+                </span>
+
+                <h2>
+                    Popular Foods
+                </h2>
+
+            </div>
+
+            <a href="/menu" class="view-all">
+                View Menu →
+            </a>
+
+        </div>
+
+        <div
+            class="food-grid"
+            id="foodContainer"
+        >
+
+            <div class="loading">
+                Loading foods...
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         WHY FOODSHALA
+    ========================== -->
+
+    <section class="why-section">
+
+        <div class="section-header centered">
+
+            <div>
+
+                <span class="section-label">
+                    WHY FOODSHALA
+                </span>
+
+                <h2>
+                    We Make Food Better
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="features">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🚀
+                </div>
+
+                <h3>
+                    Fast Delivery
+                </h3>
+
+                <p>
+                    Get your favorite meals delivered
+                    quickly and safely.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🥗
+                </div>
+
+                <h3>
+                    Fresh Food
+                </h3>
+
+                <p>
+                    We prepare every meal using
+                    fresh and quality ingredients.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    💳
+                </div>
+
+                <h3>
+                    Easy Payment
+                </h3>
+
+                <p>
+                    Simple and secure payment options
+                    for your convenience.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    ⭐
+                </div>
+
+                <h3>
+                    Great Quality
+                </h3>
+
+                <p>
+                    Delicious food with excellent
+                    service every time.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CTA
+    ========================== -->
+
+    <section class="cta-section">
+
+        <div>
+
+            <h2>
+                Hungry? We've Got You Covered.
+            </h2>
+
+            <p>
+                Explore our menu and order something
+                delicious today.
+            </p>
+
+            <a href="/menu" class="primary-btn">
+                Order Now →
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <a href="/" class="logo">
+                    🍔 Food<span>Shala</span>
+                </a>
+
+                <p>
+                    Delicious food delivered
+                    straight to your doorstep.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>
+                    Quick Links
+                </h4>
+
+                <a href="/">Home</a>
+                <a href="/menu">Menu</a>
+                <a href="/orders">Orders</a>
+                <a href="/profile">Profile</a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>
+                    Account
+                </h4>
+
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+                <a href="/cart">Cart</a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>
+                    Contact
+                </h4>
+
+                <p>📞 +977 9800000000</p>
+                <p>📧 support@foodshala.com</p>
+                <p>📍 Kathmandu, Nepal</p>
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+
+            © 2026 FoodShala. All Rights Reserved.
+
+        </div>
+
+    </footer>
+
+
+    <script src="js/main.js"></script>
+
+</body>
+</html>
