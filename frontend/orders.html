@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FoodShala | My Orders</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        .orders-page {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 25px 100px;
+        }
+
+        .orders-header {
+            margin-bottom: 35px;
+        }
+
+        .orders-header h1 {
+            font-size: 42px;
+            color: var(--dark);
+            margin-top: 8px;
+        }
+
+        .orders-header p {
+            color: var(--muted);
+        }
+
+        .order-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .order-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            gap: 20px;
+        }
+
+        .order-number {
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .order-date {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .status {
+            padding: 7px 13px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-confirmed {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .status-preparing {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-out_for_delivery {
+            background: #e0e7ff;
+            color: #4338ca;
+        }
+
+        .status-delivered {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-cancelled {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .order-body {
+            padding: 20px;
+        }
+
+        .order-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .info-box span {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .info-box strong {
+            color: var(--dark);
+        }
+
+        .order-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 18px;
+            border-top: 1px solid var(--border);
+        }
+
+        .order-total {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .view-order-btn {
+            background: var(--dark);
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .view-order-btn:hover {
+            background: var(--primary);
+        }
+
+        .empty-orders {
+            text-align: center;
+            padding: 90px 20px;
+            border: 1px dashed #ddd;
+            border-radius: 15px;
+        }
+
+        .empty-orders div {
+            font-size: 65px;
+            margin-bottom: 15px;
+        }
+
+        .empty-orders h2 {
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .empty-orders p {
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 700px) {
+
+            .order-top {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .order-info {
+                grid-template-columns: 1fr;
+            }
+
+            .order-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="/" class="logo">
+            🍔 Food<span>Shala</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="/">Home</a>
+            <a href="/menu">Menu</a>
+            <a href="/orders" class="active">Orders</a>
+            <a href="/profile">Profile</a>
+        </nav>
+
+        <div class="nav-actions">
+
+            <a href="/cart" class="cart-btn">
+                🛒
+                <span id="cartCount">0</span>
+            </a>
+
+            <a href="/login" id="loginBtn" class="login-btn">
+                Login
+            </a>
+
+            <button
+                id="logoutBtn"
+                class="logout-btn"
+                style="display:none;"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="orders-page">
+
+    <div class="orders-header">
+
+        <span class="section-label">
+            FOODSHALA
+        </span>
+
+        <h1>
+            My Orders
+        </h1>
+
+        <p>
+            Track your orders and view your
+            previous purchases.
+        </p>
+
+    </div>
+
+
+    <div id="ordersContainer">
+
+        <div class="loading">
+            Loading your orders...
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <div class="copyright">
+        © 2026 FoodShala. All Rights Reserved.
+    </div>
+
+</footer>
+
+
+<script src="js/orders.js"></script>
+
+</body>
+
+</html>
