@@ -18,6 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRoutes);
 app.use("/api/foods", foodRoutes);
+app.use("/api/categories", categoryRoutes);
 
 // =========================
 // DATABASE
@@ -26,6 +27,7 @@ app.use("/api/foods", foodRoutes);
 const db = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const foodRoutes = require("./routes/foodRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
 
 // =========================
 // FRONTEND
