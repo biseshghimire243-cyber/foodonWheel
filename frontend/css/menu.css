@@ -1,0 +1,168 @@
+.menu-hero {
+    background:
+        linear-gradient(
+            120deg,
+            #fff1e9,
+            #fff
+        );
+
+    padding: 80px 25px;
+}
+
+.menu-hero > div {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.menu-hero h1 {
+    font-size: 52px;
+    color: var(--dark);
+    margin: 10px 0;
+}
+
+.menu-hero p {
+    color: var(--muted);
+    font-size: 17px;
+}
+
+
+.menu-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px 25px 90px;
+}
+
+
+.menu-toolbar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+
+.search-box {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 0 15px;
+}
+
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 14px 5px;
+    font-size: 15px;
+}
+
+
+.menu-toolbar select {
+    width: 220px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0 15px;
+    background: #fff;
+    outline: none;
+    cursor: pointer;
+}
+
+
+.menu-categories {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+}
+
+
+.category-filter {
+    border: 1px solid var(--border);
+    background: #fff;
+
+    padding: 10px 20px;
+    border-radius: 30px;
+
+    cursor: pointer;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+
+.category-filter:hover,
+.category-filter.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
+
+.menu-food-grid {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+
+.no-foods {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 70px 20px;
+}
+
+
+.no-foods-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+
+.no-foods h3 {
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+
+.no-foods p {
+    color: var(--muted);
+}
+
+
+@media (max-width: 900px) {
+
+    .menu-food-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .menu-hero {
+        padding: 55px 20px;
+    }
+
+    .menu-hero h1 {
+        font-size: 38px;
+    }
+
+    .menu-toolbar {
+        flex-direction: column;
+    }
+
+    .menu-toolbar select {
+        width: 100%;
+        height: 48px;
+    }
+
+    .menu-food-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
