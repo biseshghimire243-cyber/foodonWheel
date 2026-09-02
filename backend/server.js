@@ -17,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRoutes);
+app.use("/api/foods", foodRoutes);
 
 // =========================
 // DATABASE
@@ -24,6 +25,7 @@ app.use("/api/auth", authRoutes);
 
 const db = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
+const foodRoutes = require("./routes/foodRoutes");
 
 // =========================
 // FRONTEND
