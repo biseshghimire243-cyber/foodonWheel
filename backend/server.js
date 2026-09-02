@@ -19,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRoutes);
 app.use("/api/foods", foodRoutes);
 app.use("/api/categories", categoryRoutes);
+app.use("/api/cart", cartRoutes);
 
 // =========================
 // DATABASE
@@ -28,6 +29,7 @@ const db = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const foodRoutes = require("./routes/foodRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
+const cartRoutes = require("./routes/cartRoutes");
 
 // =========================
 // FRONTEND
