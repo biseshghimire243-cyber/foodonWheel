@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FoodShala | Menu</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/menu.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="/" class="logo">
+            🍔 Food<span>Shala</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="/">Home</a>
+            <a href="/menu" class="active">Menu</a>
+            <a href="/orders">Orders</a>
+            <a href="/profile">Profile</a>
+        </nav>
+
+        <div class="nav-actions">
+
+            <a href="/cart" class="cart-btn">
+                🛒
+                <span id="cartCount">0</span>
+            </a>
+
+            <a href="/login" id="loginBtn" class="login-btn">
+                Login
+            </a>
+
+            <button
+                id="logoutBtn"
+                class="logout-btn"
+                style="display:none;"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="menu-hero">
+
+        <div>
+
+            <span class="section-label">
+                FOODSHALA MENU
+            </span>
+
+            <h1>
+                Find Your Favorite Food
+            </h1>
+
+            <p>
+                Explore delicious meals prepared fresh
+                and delivered to your doorstep.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FILTERS -->
+
+    <section class="menu-container">
+
+        <div class="menu-toolbar">
+
+            <div class="search-box">
+
+                <span>🔍</span>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search food..."
+                >
+
+            </div>
+
+
+            <select id="sortSelect">
+
+                <option value="default">
+                    Sort By
+                </option>
+
+                <option value="low">
+                    Price: Low to High
+                </option>
+
+                <option value="high">
+                    Price: High to Low
+                </option>
+
+                <option value="name">
+                    Name: A-Z
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- CATEGORIES -->
+
+        <div
+            class="menu-categories"
+            id="menuCategories"
+        >
+
+            <button
+                class="category-filter active"
+                data-category="all"
+            >
+                All
+            </button>
+
+        </div>
+
+
+        <!-- FOOD GRID -->
+
+        <div
+            class="food-grid menu-food-grid"
+            id="menuFoodContainer"
+        >
+
+            <div class="loading">
+                Loading foods...
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <a href="/" class="logo">
+                🍔 Food<span>Shala</span>
+            </a>
+
+            <p>
+                Delicious food delivered straight
+                to your doorstep.
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+
+            <h4>Quick Links</h4>
+
+            <a href="/">Home</a>
+            <a href="/menu">Menu</a>
+            <a href="/orders">Orders</a>
+            <a href="/profile">Profile</a>
+
+        </div>
+
+        <div class="footer-links">
+
+            <h4>Account</h4>
+
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+            <a href="/cart">Cart</a>
+
+        </div>
+
+        <div class="footer-links">
+
+            <h4>Contact</h4>
+
+            <p>📞 +977 9800000000</p>
+            <p>📧 support@foodshala.com</p>
+            <p>📍 Kathmandu, Nepal</p>
+
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        © 2026 FoodShala. All Rights Reserved.
+    </div>
+
+</footer>
+
+
+<script src="js/menu.js"></script>
+
+</body>
+</html>
