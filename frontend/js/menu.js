@@ -3,7 +3,6 @@ const API_URL = "/api";
 let allFoods = [];
 let selectedCategory = "all";
 
-
 // =========================
 // AUTH
 // =========================
@@ -41,12 +40,113 @@ function checkLogin() {
 }
 
 
+// =========================
+// LOGOUT
+// =========================
+
 function logout() {
 
     localStorage.removeItem("token");
     localStorage.removeItem("user");
 
     window.location.href = "/";
+}
+
+
+// =========================
+// FOOD IMAGES
+// =========================
+
+function getFoodImage(food) {
+
+    const name =
+        (food.name || "").toLowerCase().trim();
+
+    if (name.includes("veg thakali")) {
+        return "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("mutton thakali")) {
+        return "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("chicken thakali")) {
+        return "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("momo")) {
+        return "https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("pizza")) {
+        return "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("burger")) {
+        return "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("chowmein") || name.includes("chow mein")) {
+        return "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("noodle")) {
+        return "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("biryani")) {
+        return "https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("gulab jamun")) {
+        return "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("brownie")) {
+        return "https://images.unsplash.com/photo-1564355808539-22fda35bed7e?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("chocolate cake") || name.includes("cake")) {
+        return "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("ice cream")) {
+        return "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("mango lassi")) {
+        return "https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("lemonade")) {
+        return "https://images.unsplash.com/photo-1523677011781-c91d1bbe2f5b?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("coca")) {
+        return "https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("fanta")) {
+        return "https://images.unsplash.com/photo-1629203849820-fdd70d49c38e?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("sprite")) {
+        return "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("chicken")) {
+        return "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("mutton")) {
+        return "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=85";
+    }
+
+    if (name.includes("veg")) {
+        return "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85";
+    }
+
+    return "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85";
 }
 
 
@@ -158,7 +258,6 @@ async function loadCategories() {
 
         });
 
-        // Check URL category
         const params =
             new URLSearchParams(
                 window.location.search
@@ -227,7 +326,9 @@ function renderFoods() {
         [...allFoods];
 
 
-    // Category filter
+    // =========================
+    // CATEGORY FILTER
+    // =========================
 
     if (selectedCategory !== "all") {
 
@@ -239,7 +340,9 @@ function renderFoods() {
     }
 
 
-    // Search
+    // =========================
+    // SEARCH
+    // =========================
 
     if (search) {
 
@@ -265,7 +368,9 @@ function renderFoods() {
     }
 
 
-    // Sort
+    // =========================
+    // SORT
+    // =========================
 
     if (sort === "low") {
 
@@ -297,6 +402,10 @@ function renderFoods() {
     }
 
 
+    // =========================
+    // NO FOOD
+    // =========================
+
     if (foods.length === 0) {
 
         container.innerHTML = `
@@ -321,6 +430,10 @@ function renderFoods() {
     }
 
 
+    // =========================
+    // DISPLAY FOODS
+    // =========================
+
     container.innerHTML =
         foods.map(food =>
             createFoodCard(food)
@@ -334,33 +447,20 @@ function renderFoods() {
 
 function createFoodCard(food) {
 
-    let image;
-
-    if (food.image) {
-
-        image = `
-            <img
-                src="${food.image}"
-                alt="${food.name}"
-            >
-        `;
-
-    } else {
-
-        image = `
-            <div class="food-placeholder">
-                🍽️
-            </div>
-        `;
-    }
-
+    const image =
+        getFoodImage(food);
 
     return `
         <div class="food-card">
 
             <div class="food-image">
 
-                ${image}
+                <img
+                    src="${image}"
+                    alt="${food.name}"
+                    loading="lazy"
+                    onerror="this.src='https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85'"
+                >
 
             </div>
 
@@ -375,7 +475,10 @@ function createFoodCard(food) {
                 </h3>
 
                 <p>
-                    ${food.description || "Delicious food prepared fresh for you."}
+                    ${
+                        food.description ||
+                        "Delicious food prepared fresh for you."
+                    }
                 </p>
 
                 <div class="food-bottom">
@@ -415,7 +518,7 @@ function createFoodCard(food) {
 
 
 // =========================
-// ADD CART
+// ADD TO CART
 // =========================
 
 async function addToCart(foodId) {
@@ -425,15 +528,20 @@ async function addToCart(foodId) {
 
     if (!token) {
 
+        localStorage.setItem(
+            "redirectAfterLogin",
+            "/menu"
+        );
+
         alert(
             "Please login to add items to your cart."
         );
 
-        window.location.href = "/login";
+        window.location.href =
+            "/login";
 
         return;
     }
-
 
     try {
 
@@ -554,36 +662,46 @@ document.addEventListener(
         updateCartCount();
 
 
-        document
-            .getElementById("searchInput")
-            .addEventListener(
+        const searchInput =
+            document.getElementById("searchInput");
+
+        if (searchInput) {
+
+            searchInput.addEventListener(
                 "input",
                 renderFoods
             );
+        }
 
 
-        document
-            .getElementById("sortSelect")
-            .addEventListener(
+        const sortSelect =
+            document.getElementById("sortSelect");
+
+        if (sortSelect) {
+
+            sortSelect.addEventListener(
                 "change",
                 renderFoods
             );
+        }
 
 
-        document
-            .querySelector(
+        const allCategory =
+            document.querySelector(
                 '[data-category="all"]'
-            )
-            .addEventListener(
+            );
+
+        if (allCategory) {
+
+            allCategory.addEventListener(
                 "click",
                 function () {
 
-                    selectedCategory = "all";
+                    selectedCategory =
+                        "all";
 
                     document
-                        .querySelectorAll(
-                            ".category-filter"
-                        )
+                        .querySelectorAll(".category-filter")
                         .forEach(btn =>
                             btn.classList.remove(
                                 "active"
@@ -595,14 +713,21 @@ document.addEventListener(
                     renderFoods();
                 }
             );
+        }
 
 
-        document
-            .getElementById("logoutBtn")
-            .addEventListener(
+        const logoutBtn =
+            document.getElementById(
+                "logoutBtn"
+            );
+
+        if (logoutBtn) {
+
+            logoutBtn.addEventListener(
                 "click",
                 logout
             );
+        }
 
     }
 );
