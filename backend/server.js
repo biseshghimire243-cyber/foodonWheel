@@ -10,28 +10,38 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // =========================
+// DATABASE
+// =========================
+
+const db = require("./config/db");
+
+// =========================
+// ROUTES
+// =========================
+
+const authRoutes = require("./routes/authRoutes");
+const foodRoutes = require("./routes/foodRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
+const cartRoutes = require("./routes/cartRoutes");
+const orderRoutes = require("./routes/orderRoutes");
+
+// =========================
 // MIDDLEWARE
 // =========================
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// =========================
+// API ROUTES
+// =========================
+
 app.use("/api/auth", authRoutes);
 app.use("/api/foods", foodRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/orders", orderRoutes);
-
-// =========================
-// DATABASE
-// =========================
-
-const db = require("./config/db");
-const authRoutes = require("./routes/authRoutes");
-const foodRoutes = require("./routes/foodRoutes");
-const categoryRoutes = require("./routes/categoryRoutes");
-const cartRoutes = require("./routes/cartRoutes");
-const orderRoutes = require("./routes/orderRoutes");
 
 // =========================
 // FRONTEND
