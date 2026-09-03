@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cart - FoodShala</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
+</head>
+
+<body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <div class="container nav-container">
+
+        <a href="/" class="logo">
+            🍔 FoodShala
+        </a>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+            <a href="/menu">Menu</a>
+            <a href="/orders">Orders</a>
+            <a href="/profile">Profile</a>
+
+            <a href="/cart" class="cart-link active">
+                🛒 Cart
+                <span id="cartCount">0</span>
+            </a>
+
+            <a href="/login" id="loginLink">
+                Login
+            </a>
+
+            <a href="#" id="logoutLink" style="display:none;">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     CART HERO
+========================= -->
+
+<section class="cart-hero">
+
+    <div class="container">
+
+        <h1>🛒 Your Cart</h1>
+
+        <p>
+            Review your items before placing your order.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CART SECTION
+========================= -->
+
+<section class="cart-section">
+
+    <div class="container">
+
+        <div id="cartMessage"></div>
+
+        <div class="cart-layout">
+
+            <!-- CART ITEMS -->
+
+            <div class="cart-items-section">
+
+                <div class="cart-section-header">
+
+                    <h2>Your Items</h2>
+
+                    <span id="itemCount">
+                        0 items
+                    </span>
+
+                </div>
+
+                <div id="cartItems">
+
+                    <div class="cart-loading">
+                        Loading cart...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ORDER SUMMARY -->
+
+            <div class="order-summary">
+
+                <h2>Order Summary</h2>
+
+                <div class="summary-row">
+
+                    <span>Subtotal</span>
+
+                    <strong id="subtotal">
+                        Rs. 0
+                    </strong>
+
+                </div>
+
+                <div class="summary-row">
+
+                    <span>Delivery Fee</span>
+
+                    <strong id="deliveryFee">
+                        Rs. 50
+                    </strong>
+
+                </div>
+
+                <div class="summary-row discount-row">
+
+                    <span>Discount</span>
+
+                    <strong id="discount">
+                        Rs. 0
+                    </strong>
+
+                </div>
+
+                <div class="summary-divider"></div>
+
+                <div class="summary-total">
+
+                    <span>Total</span>
+
+                    <strong id="total">
+                        Rs. 0
+                    </strong>
+
+                </div>
+
+                <button
+                    id="checkoutBtn"
+                    class="checkout-btn"
+                >
+                    Proceed to Checkout →
+                </button>
+
+                <a
+                    href="/menu"
+                    class="continue-shopping"
+                >
+                    ← Continue Shopping
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EMPTY CART
+========================= -->
+
+<section
+    id="emptyCart"
+    class="empty-cart"
+    style="display:none;"
+>
+
+    <div class="container">
+
+        <div class="empty-cart-box">
+
+            <div class="empty-cart-icon">
+                🛒
+            </div>
+
+            <h2>Your Cart is Empty</h2>
+
+            <p>
+                Looks like you haven't added anything to your cart yet.
+            </p>
+
+            <a href="/menu" class="browse-btn">
+                Browse Menu
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-content">
+
+            <div>
+
+                <h3>🍔 FoodShala</h3>
+
+                <p>
+                    Delicious food delivered to your doorstep.
+                </p>
+
+            </div>
+
+            <div>
+
+                <h4>Quick Links</h4>
+
+                <a href="/">Home</a>
+                <a href="/menu">Menu</a>
+                <a href="/orders">Orders</a>
+                <a href="/profile">Profile</a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 FoodShala. All rights reserved.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="js/cart.js"></script>
+
+</body>
+</html>
