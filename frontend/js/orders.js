@@ -13,9 +13,9 @@ function checkLogin() {
     if (!token) {
 
         localStorage.setItem(
-    "redirectAfterLogin",
-    window.location.pathname
-);
+            "redirectAfterLogin",
+            window.location.pathname
+        );
 
         window.location.href =
             "/login";
