@@ -9,40 +9,34 @@ const {
     removeFromCart
 } = require("../controllers/cartController");
 
-const authMiddleware =
-    require("../middleware/authMiddleware");
+const authMiddleware = require("../middleware/authMiddleware");
 
-
-// =========================
-// CART ROUTES
-// =========================
-
+// Get logged-in user's cart
 router.get(
     "/",
     authMiddleware,
     getCart
 );
 
-
+// Add food to logged-in user's cart
 router.post(
     "/",
     authMiddleware,
     addToCart
 );
 
-
+// Update cart item quantity
 router.put(
     "/:id",
     authMiddleware,
     updateCart
 );
 
-
+// Remove item from cart
 router.delete(
     "/:id",
     authMiddleware,
     removeFromCart
 );
-
 
 module.exports = router;
