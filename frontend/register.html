@@ -1,0 +1,913 @@
+<!-- frontend/register.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FoodShala | Create Account</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        /* =========================
+           REGISTER PAGE
+        ========================= */
+
+        .auth-page {
+            min-height: calc(100vh - 75px);
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff7f2,
+                    #ffffff
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 50px 20px;
+        }
+
+
+        .auth-container {
+            width: 100%;
+            max-width: 1050px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            background: #ffffff;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 20px 60px
+                rgba(0, 0, 0, 0.10);
+        }
+
+
+        /* =========================
+           LEFT SIDE
+        ========================= */
+
+        .auth-left {
+            background:
+                linear-gradient(
+                    145deg,
+                    #ff5a1f,
+                    #ff7a45
+                );
+
+            color: #ffffff;
+
+            padding: 60px 45px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+
+        .auth-logo {
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 35px;
+        }
+
+
+        .auth-left h1 {
+            font-size: 42px;
+            line-height: 1.15;
+
+            margin-bottom: 20px;
+        }
+
+
+        .auth-left p {
+            font-size: 17px;
+            line-height: 1.7;
+
+            opacity: 0.95;
+
+            margin-bottom: 35px;
+        }
+
+
+        .auth-food {
+            font-size: 110px;
+
+            margin-top: 10px;
+
+            filter:
+                drop-shadow(
+                    0 15px 15px
+                    rgba(0,0,0,0.15)
+                );
+        }
+
+
+        .auth-features {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+
+        .auth-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-weight: 600;
+        }
+
+
+        .auth-feature span:first-child {
+            width: 30px;
+            height: 30px;
+
+            background: rgba(255,255,255,0.20);
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /* =========================
+           RIGHT SIDE
+        ========================= */
+
+        .auth-right {
+            padding: 50px 45px;
+        }
+
+
+        .auth-header {
+            margin-bottom: 28px;
+        }
+
+
+        .auth-header h2 {
+            color: var(--dark);
+
+            font-size: 32px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .auth-header p {
+            color: var(--muted);
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .register-form {
+            display: flex;
+            flex-direction: column;
+
+            gap: 17px;
+        }
+
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+
+            gap: 7px;
+        }
+
+
+        .form-group label {
+            color: var(--dark);
+
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #dddddd;
+
+            border-radius: 8px;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.25s;
+        }
+
+
+        .form-group textarea {
+            min-height: 85px;
+
+            resize: vertical;
+        }
+
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(255, 90, 31, 0.10);
+        }
+
+
+        .form-row {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 15px;
+        }
+
+
+        .password-wrapper {
+            position: relative;
+        }
+
+
+        .password-wrapper input {
+            padding-right: 48px;
+        }
+
+
+        .toggle-password {
+            position: absolute;
+
+            right: 12px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            cursor: pointer;
+
+            font-size: 18px;
+        }
+
+
+        .password-strength {
+            height: 4px;
+
+            width: 100%;
+
+            background: #eeeeee;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            margin-top: 3px;
+        }
+
+
+        .password-strength-bar {
+            height: 100%;
+
+            width: 0;
+
+            transition: 0.3s;
+        }
+
+
+        .password-hint {
+            color: #888;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        .form-message {
+            display: none;
+
+            padding: 12px 14px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .form-message.error {
+            display: block;
+
+            background: #fff0f0;
+
+            color: #d93025;
+
+            border: 1px solid #ffd0d0;
+        }
+
+
+        .form-message.success {
+            display: block;
+
+            background: #effaf2;
+
+            color: #16803a;
+
+            border: 1px solid #ccebd5;
+        }
+
+
+        /* =========================
+           TERMS
+        ========================= */
+
+        .terms {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 9px;
+
+            font-size: 13px;
+
+            color: #666;
+
+            line-height: 1.5;
+        }
+
+
+        .terms input {
+            margin-top: 3px;
+
+            accent-color: var(--primary);
+        }
+
+
+        .terms a {
+            color: var(--primary);
+
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           REGISTER BUTTON
+        ========================= */
+
+        .register-btn {
+            width: 100%;
+
+            border: none;
+
+            background: var(--primary);
+
+            color: #ffffff;
+
+            padding: 14px;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+
+        .register-btn:hover {
+            background: var(--primary-dark);
+
+            transform: translateY(-1px);
+        }
+
+
+        .register-btn:disabled {
+            opacity: 0.65;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+
+        /* =========================
+           LOGIN LINK
+        ========================= */
+
+        .auth-footer {
+            text-align: center;
+
+            margin-top: 22px;
+
+            color: var(--muted);
+
+            font-size: 14px;
+        }
+
+
+        .auth-footer a {
+            color: var(--primary);
+
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .auth-container {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-left {
+                padding: 40px 30px;
+
+                text-align: center;
+            }
+
+            .auth-food {
+                font-size: 80px;
+            }
+
+            .auth-features {
+                align-items: center;
+            }
+
+            .auth-right {
+                padding: 40px 30px;
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .auth-page {
+                padding: 20px 12px;
+            }
+
+            .auth-left h1 {
+                font-size: 32px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-right {
+                padding: 30px 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a
+                href="/"
+                class="logo"
+            >
+                🍔 Food<span>Shala</span>
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="/">
+                    Home
+                </a>
+
+                <a href="/menu">
+                    Menu
+                </a>
+
+                <a href="/login">
+                    Login
+                </a>
+
+            </nav>
+
+
+            <div class="nav-actions">
+
+                <a
+                    href="/login"
+                    class="login-btn"
+                >
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         REGISTER PAGE
+    ========================== -->
+
+    <main class="auth-page">
+
+
+        <div class="auth-container">
+
+
+            <!-- =========================
+                 LEFT
+            ========================== -->
+
+            <section class="auth-left">
+
+                <div class="auth-logo">
+                    🍔 FoodShala
+                </div>
+
+
+                <h1>
+                    Join FoodShala
+                    Today!
+                </h1>
+
+
+                <p>
+                    Create your account and start
+                    ordering your favorite food
+                    from FoodShala.
+                </p>
+
+
+                <div class="auth-features">
+
+                    <div class="auth-feature">
+
+                        <span>✓</span>
+
+                        <span>
+                            Fresh and delicious food
+                        </span>
+
+                    </div>
+
+
+                    <div class="auth-feature">
+
+                        <span>✓</span>
+
+                        <span>
+                            Fast doorstep delivery
+                        </span>
+
+                    </div>
+
+
+                    <div class="auth-feature">
+
+                        <span>✓</span>
+
+                        <span>
+                            Easy and secure ordering
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="auth-food">
+                    🍕
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 RIGHT
+            ========================== -->
+
+            <section class="auth-right">
+
+
+                <div class="auth-header">
+
+                    <h2>
+                        Create Account
+                    </h2>
+
+                    <p>
+                        Fill in your details to get started.
+                    </p>
+
+                </div>
+
+
+                <!-- MESSAGE -->
+
+                <div
+                    id="registerMessage"
+                    class="form-message"
+                ></div>
+
+
+
+                <!-- FORM -->
+
+                <form
+                    id="registerForm"
+                    class="register-form"
+                >
+
+
+                    <!-- FULL NAME -->
+
+                    <div class="form-group">
+
+                        <label for="fullName">
+                            Full Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="full_name"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address *
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- PHONE -->
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="98XXXXXXXX"
+                            autocomplete="tel"
+                            maxlength="10"
+                        >
+
+                    </div>
+
+
+
+                    <!-- PASSWORD ROW -->
+
+                    <div class="form-row">
+
+
+                        <!-- PASSWORD -->
+
+                        <div class="form-group">
+
+                            <label for="password">
+                                Password *
+                            </label>
+
+                            <div class="password-wrapper">
+
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    placeholder="Create password"
+                                    autocomplete="new-password"
+                                    minlength="6"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="toggle-password"
+                                    data-target="password"
+                                >
+                                    👁️
+                                </button>
+
+                            </div>
+
+
+                            <div class="password-strength">
+
+                                <div
+                                    id="passwordStrengthBar"
+                                    class="password-strength-bar"
+                                ></div>
+
+                            </div>
+
+
+                            <span class="password-hint">
+                                Minimum 6 characters
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- CONFIRM PASSWORD -->
+
+                        <div class="form-group">
+
+                            <label for="confirmPassword">
+                                Confirm Password *
+                            </label>
+
+                            <div class="password-wrapper">
+
+                                <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    placeholder="Confirm password"
+                                    autocomplete="new-password"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="toggle-password"
+                                    data-target="confirmPassword"
+                                >
+                                    👁️
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ADDRESS -->
+
+                    <div class="form-group">
+
+                        <label for="address">
+                            Address
+                        </label>
+
+                        <textarea
+                            id="address"
+                            name="address"
+                            placeholder="Enter your delivery address"
+                            autocomplete="street-address"
+                        ></textarea>
+
+                    </div>
+
+
+
+                    <!-- TERMS -->
+
+                    <label class="terms">
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            required
+                        >
+
+                        <span>
+                            I agree to the
+                            <a href="#">
+                                Terms & Conditions
+                            </a>
+                            and
+                            <a href="#">
+                                Privacy Policy
+                            </a>.
+                        </span>
+
+                    </label>
+
+
+
+                    <!-- REGISTER -->
+
+                    <button
+                        type="submit"
+                        id="registerBtn"
+                        class="register-btn"
+                    >
+                        Create Account
+                    </button>
+
+                </form>
+
+
+
+                <!-- LOGIN -->
+
+                <div class="auth-footer">
+
+                    Already have an account?
+
+                    <a href="/login">
+                        Login here
+                    </a>
+
+                </div>
+
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <script src="js/auth.js"></script>
+
+</body>
+
+</html>
