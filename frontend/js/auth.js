@@ -1,21 +1,16 @@
 const API_URL = "/api";
 
-
 // =========================
 // SHOW MESSAGE
 // =========================
 
 function showMessage(message, type = "error") {
-
-    const messageBox =
-        document.getElementById("authMessage");
+    const messageBox = document.getElementById("authMessage");
 
     if (!messageBox) return;
 
     messageBox.textContent = message;
-
-    messageBox.className =
-        `auth-message ${type}`;
+    messageBox.className = `auth-message ${type}`;
 }
 
 
@@ -24,28 +19,20 @@ function showMessage(message, type = "error") {
 // =========================
 
 async function login(event) {
-
     event.preventDefault();
 
-    const email =
-        document.getElementById("email")
-            .value
-            .trim();
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const loginBtn = document.getElementById("loginBtn");
 
-    const password =
-        document.getElementById("password")
-            .value;
-
-    const loginBtn =
-        document.getElementById("loginBtn");
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
 
     if (!email || !password) {
-
         showMessage(
-            "Email and password are required.",
+            "Please enter your email and password.",
             "error"
         );
-
         return;
     }
 
@@ -53,50 +40,103 @@ async function login(event) {
     loginBtn.textContent = "Logging in...";
 
     try {
+        console.log("Sending login request...");
 
-        const response =
-            await fetch(
-                `${API_URL}/auth/login`,
-                {
-                    method: "POST",
+        const response = await fetch(
+            `${API_URL}/auth/login`,
+            {
+                method: "POST",
 
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
 
-                    body: JSON.stringify({
-                        email,
-                        password
-                    })
-                }
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            }
+        );
+
+        console.log("Login status:", response.status);
+
+        const contentType =
+            response.headers.get("content-type") || "";
+
+        let data;
+
+        if (contentType.includes("application/json")) {
+            data = await response.json();
+        } else {
+            const text = await response.text();
+
+            console.error(
+                "Server returned non-JSON:",
+                text
             );
-
-        const data =
-            await response.json();
-
-        if (!response.ok) {
 
             throw new Error(
-                data.message ||
-                "Invalid email or password"
+                "Server returned an invalid response."
             );
         }
+
+        console.log("Login response:", data);
+
+        // =========================
+        // LOGIN FAILED
+        // =========================
+
+        if (!response.ok || !data.success) {
+            throw new Error(
+                data.message ||
+                "Invalid email or password."
+            );
+        }
+
+        // =========================
+        // CHECK TOKEN
+        // =========================
+
+        if (!data.token) {
+            throw new Error(
+                "Login succeeded but server did not return a token."
+            );
+        }
+
+        // =========================
+        // SAVE LOGIN
+        // =========================
 
         localStorage.setItem(
             "token",
             data.token
         );
 
-        localStorage.setItem(
-            "user",
-            JSON.stringify(data.user)
-        );
+        if (data.user) {
+            localStorage.setItem(
+                "user",
+                JSON.stringify(data.user)
+            );
+        }
+
+        console.log("Login successful");
+        console.log("Token saved");
+
+
+        // =========================
+        // SUCCESS MESSAGE
+        // =========================
 
         showMessage(
             "Login successful! Redirecting...",
             "success"
         );
+
+
+        // =========================
+        // REDIRECT
+        // =========================
 
         const redirect =
             localStorage.getItem(
@@ -109,10 +149,13 @@ async function login(event) {
 
         setTimeout(() => {
 
-            window.location.href =
-                redirect || "/";
+            if (redirect) {
+                window.location.href = redirect;
+            } else {
+                window.location.href = "/";
+            }
 
-        }, 500);
+        }, 700);
 
     } catch (error) {
 
@@ -123,13 +166,32 @@ async function login(event) {
 
         showMessage(
             error.message ||
-            "Unable to login.",
+            "Unable to login. Please try again.",
             "error"
         );
 
         loginBtn.disabled = false;
         loginBtn.textContent = "Login";
     }
+}
+
+
+// =========================
+// CHECK IF ALREADY LOGGED IN
+// =========================
+
+function checkAlreadyLoggedIn() {
+
+    const token =
+        localStorage.getItem("token");
+
+    if (!token) {
+        return;
+    }
+
+    console.log(
+        "User is already logged in."
+    );
 }
 
 
@@ -142,17 +204,15 @@ document.addEventListener(
     () => {
 
         const form =
-            document.getElementById(
-                "loginForm"
-            );
+            document.getElementById("loginForm");
 
         if (form) {
-
             form.addEventListener(
                 "submit",
                 login
             );
         }
 
+        checkAlreadyLoggedIn();
     }
 );
