@@ -145,10 +145,11 @@ app.use("/api", (req, res) => {
 // START SERVER
 // =========================
 
-app.listen(PORT, () => {
-    console.log("=================================");
-    console.log("🍔 FoodShala Server Started");
-    console.log(`🚀 Server: http://localhost:${PORT}`);
-    console.log(`🗄️ Database: ${process.env.DB_NAME}`);
-    console.log("=================================");
-});
+// app.listen(PORT, () => {
+//     console.log("=================================");
+//     console.log("🍔 FoodShala Server Started");
+//     console.log(`🚀 Server: http://localhost:${PORT}`);
+//     console.log(`🗄️ Database: ${process.env.DB_NAME}`);
+//     console.log("=================================");
+// });
+module.exports = app;
